@@ -22,16 +22,12 @@ public class UserService {
 	public User getUser(Integer id) {
 		if(id == null) return null;
 		Optional<User> user = userRepository.findById(id);
-		
-		if(user.isEmpty()) {
-			return null;
-		}
-		return user.get();
+		return user.isPresent() ? user.get() : null;
 	}
 
 	public void addUser(User user) {
 		
-		if(user.getId() == null || userRepository.findById(user.getId()).isPresent()) {
+		if(user.getId() == null || userRepository.existsById(user.getId())) {
 				return;
 		}
 	
@@ -39,17 +35,16 @@ public class UserService {
 	}
 
 	public void updateUser(Integer id, User user) {
-		if(id == null || user.getId() == null) return;
-		if(userRepository.findById(id).isEmpty()) return;
-		try{
-			userRepository.save(user);
-		} catch(IllegalArgumentException e) {
-			// ignore
+		if(id == null || user.getId() == null
+				|| !userRepository.existsById(id)){
+			return;
 		}
+		
+		userRepository.save(user);
 	}
 
 	public void deleteUser(Integer id) {
-		if(id == null) return;
+		if(id == null || !userRepository.existsById(id)) return;
 		userRepository.deleteById(id);		
 	}
 }

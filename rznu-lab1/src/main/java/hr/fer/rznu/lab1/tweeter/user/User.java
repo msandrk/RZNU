@@ -37,7 +37,11 @@ public class User {
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 	}
-
+	
+	public User(int id) {
+		this.id = id;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}

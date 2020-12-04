@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import hr.fer.rznu.lab1.tweeter.user.User;
 
 @Entity
@@ -14,6 +16,7 @@ public class Tweet {
 	private String tweet;
 	
 	@ManyToOne
+	@JsonIgnoreProperties({"firstName", "lastName", "dateOfBirth"})
 	private User user;
 	
 	public Tweet() {

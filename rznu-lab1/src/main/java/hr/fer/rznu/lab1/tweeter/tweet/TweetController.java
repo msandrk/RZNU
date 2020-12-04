@@ -19,9 +19,14 @@ public class TweetController {
 	@Autowired
 	private TweetService tweetService;
 	
+	@RequestMapping("/tweets")
+	public List<Tweet> getAllTweets(){
+		return tweetService.getAllTweets();
+	}
+	
 	@RequestMapping("/users/{userId}/tweets")
-	public List<Tweet> getAllTweets(@PathVariable Integer userId){
-		return tweetService.getAllTweets(userId);
+	public List<Tweet> getAllTweetsOfUser(@PathVariable Integer userId){
+		return tweetService.getAllTweetsOfUser(userId);
 	}
 	
 	@RequestMapping("/users/{userId}/tweets/{tweetId}")
@@ -37,10 +42,9 @@ public class TweetController {
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/users/{userId}/tweets/{tweetId}")
 	public void updateTweet(@RequestBody Tweet tweet, @PathVariable Integer userId, 
-			@PathVariable Integer tweetId) {
-		System.out.println(tweet);
+							@PathVariable Integer tweetId) {
+
 		tweet.setUser(new User(userId));
-		System.out.println(tweet);
 		tweetService.updateTweet(tweetId, tweet);
 	}
 	

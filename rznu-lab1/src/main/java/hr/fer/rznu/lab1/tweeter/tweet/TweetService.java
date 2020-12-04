@@ -1,5 +1,6 @@
 package hr.fer.rznu.lab1.tweeter.tweet;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +13,13 @@ public class TweetService {
 	@Autowired
 	private TweetRepository tweetRepository;
 
-	public List<Tweet> getAllTweets(Integer userId) {
+	public List<Tweet> getAllTweets() {
+		List<Tweet> tweets = new LinkedList<>();
+		tweetRepository.findAll().forEach(tweets::add);
+		return tweets;
+	}	
+	
+	public List<Tweet> getAllTweetsOfUser(Integer userId) {
 		if(userId == null) return null;
 		return tweetRepository.findByUserId(userId);
 	}
@@ -42,4 +49,6 @@ public class TweetService {
 		
 		tweetRepository.deleteById(id);
 	}
+
+
 }

@@ -27,19 +27,19 @@ public class DataLoader implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception { 
-		userRepository.save(new User(1, "Marko", "Šandrk", LocalDate.now()));
+		userRepository.save(new User(1, "Ana", "Horvat", LocalDate.now()));
 		userRepository.save(new User(2, "Pero", "Perić", LocalDate.now()));
-		userRepository.save(new User(3, "Ivo", "Ivić", LocalDate.now()));
-		userRepository.save(new User(4, "Marija", "Marić", LocalDate.now()));
-		userRepository.save(new User(5, "Luka", "Horvat", LocalDate.now()));
-		userRepository.save(new User(6, "Ana", "Tomić", LocalDate.now()));
-		userRepository.save(new User(7, "Ivana", "Novak", LocalDate.now()));
+//		userRepository.save(new User(3, "Ivo", "Ivić", LocalDate.now()));
+//		userRepository.save(new User(4, "Marija", "Marić", LocalDate.now()));
+//		userRepository.save(new User(5, "Luka", "Horvat", LocalDate.now()));
+//		userRepository.save(new User(6, "Ana", "Tomić", LocalDate.now()));
+//		userRepository.save(new User(7, "Ivana", "Novak", LocalDate.now()));
 		
-		tweetRepository.save(new Tweet(1, "Markov prvi tweet", new User(1)));
-		tweetRepository.save(new Tweet(2, "Markov drugi tweet", new User(1)));
-		tweetRepository.save(new Tweet(3, "Markov treći tweet", new User(1)));
+		tweetRepository.save(new Tweet(1, "Anin prvi tweet", new User(1)));
+		tweetRepository.save(new Tweet(2, "Anin drugi tweet", new User(1)));
+		tweetRepository.save(new Tweet(3, "Anin treći tweet", new User(1)));
 		tweetRepository.save(new Tweet(4, "Perin prvi tweet", new User(2)));
-		tweetRepository.save(new Tweet(5, "Perin drugii tweet", new User(2)));
+		tweetRepository.save(new Tweet(5, "Perin drugi tweet", new User(2)));
 		tweetRepository.save(new Tweet(6, "Perin treći tweet", new User(2)));
 		
 	}

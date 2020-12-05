@@ -48,5 +48,12 @@ public class Tweet {
 
 	public Integer getId() {
 		return id;
-	}		
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Tweet [id=%s, tweet=%s, user=%s]", id, tweet, user);
+	}
+	
+	
 }

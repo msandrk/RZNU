@@ -3,6 +3,7 @@ package hr.fer.rznu.lab1.tweeter.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +16,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/users")
+	@GetMapping("/users")
 	public List<User> getAllUsers(){
 		return userService.getAllUsers();
 	}
 	
-	@RequestMapping("/users/{id}")
+	@GetMapping("/users/{id}")
 	public User getUser(@PathVariable Integer id) {
 		return userService.getUser(id);
 	}
@@ -32,7 +33,6 @@ public class UserController {
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/users/{id}")
 	public void updateUser(@PathVariable Integer id, @RequestBody User user) {
-		if(id != user.getId()) return;
 		userService.updateUser(id, user);
 	}
 	

@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class UserService {
@@ -21,14 +23,17 @@ public class UserService {
 
 	public User getUser(Integer id) {
 		if(id == null) return null;
+		
 		Optional<User> user = userRepository.findById(id);
-		return user.isPresent() ? user.get() : null;
+		if (user.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		
+		return user.get();
 	}
 
 	public void addUser(User user) {
 		
 		if(user.getId() == null || userRepository.existsById(user.getId())) {
-				return;
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
 	
 		userRepository.save(user);
@@ -36,15 +41,17 @@ public class UserService {
 
 	public void updateUser(Integer id, User user) {
 		if(id == null || user.getId() == null
-				|| !userRepository.existsById(id)){
-			return;
+			|| id != user.getId() || !userRepository.existsById(id)){
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
-		
+	
 		userRepository.save(user);
 	}
 
 	public void deleteUser(Integer id) {
-		if(id == null || !userRepository.existsById(id)) return;
+		if(id == null || !userRepository.existsById(id)) 
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		
 		userRepository.deleteById(id);		
 	}
 }

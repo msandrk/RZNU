@@ -69,5 +69,13 @@ public class User {
 	public Integer getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("User [id=%s, firstName=%s, lastName=%s, dateOfBirth=%s]", id, firstName, lastName,
+				dateOfBirth);
+	}
+	
+	
 	
 }

@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import hr.fer.rznu.lab1.tweeter.user.User;
@@ -16,6 +19,7 @@ public class Tweet {
 	private String tweet;
 	
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnoreProperties({"firstName", "lastName", "dateOfBirth"})
 	private User user;
 	
@@ -55,5 +59,8 @@ public class Tweet {
 		return String.format("Tweet [id=%s, tweet=%s, user=%s]", id, tweet, user);
 	}
 	
+	public String asJSONString() {
+		return "{\"id\":" + id + ",\"tweet\":\"" + tweet + "\",\"user\":{\"id\":" + user.getId() + "}}";
+	}
 	
 }

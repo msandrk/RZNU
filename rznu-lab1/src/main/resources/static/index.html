@@ -4,6 +4,26 @@
         <title>Tweeter REST API</title>
     </head>
     <body>
-        <h1>Welcome!</h1>
+        <h1>Dokumentacija Tweeter REST API-ja</h1>
+        <p>
+        	<a href="/users">"/users" -> svi korisnici</a>	
+        	<br>- dostupne HTTP metode: GET (dohvat svih korisnika), POST (dodavanje korisnika)
+        </p>
+        <p>
+        	<a href="/users/1">"/users/{user_id}" -> korisnik s identifikatorom user_id</a>
+        	<br>- dostupne HTTP metode: GET (dohvat korisnika), PUT (ažuriranje korisnika), DELETE (brisanje korisnika)
+        </p>
+        <p>
+        	<a href="/tweets">"/tweets" -> svi tweetovi</a>
+        	<br>- dosuptne HTTP metode: GET (dohvat svih tweetova), POST (dodavanje tweeta)
+        </p>
+        <p>
+        	<a href="/tweets/1">"/tweets/{tweet_id}" -> tweet s identifikatorom tweet_id</a>
+        	<br>- dosuptne HTTP metode: GET (dohvat tweeta), PUT (ažuriranje tweeta), DELETE (brisanje tweeta)
+        </p>
+        <p>
+        	<a href="users/1/tweets">"/users/{user_id}/tweets" -> tweetovi korisnika s identifikatorom user_id</a>
+        	<br>- dosuptne HTTP metode: GET (dohvat tweetova)
+        </p>
     </body>
 </html>

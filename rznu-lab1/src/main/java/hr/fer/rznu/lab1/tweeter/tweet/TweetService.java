@@ -34,7 +34,7 @@ public class TweetService {
 		Optional<Tweet> tweet = tweetRepository.findById(id);
 		if (tweet.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-
+		
 		return tweet.get();
 	}
 
@@ -50,8 +50,10 @@ public class TweetService {
 	}
 
 	public void updateTweet(Integer id, Tweet tweet) {
-		if (id == null || id != tweet.getId() || tweet.getUser() == null || !tweetRepository.existsById(id)) {
+		if (id == null || id != tweet.getId() || tweet.getUser() == null) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		} else if(!tweetRepository.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 		try {
 			tweetRepository.save(tweet);
@@ -61,8 +63,10 @@ public class TweetService {
 	}
 
 	public void deleteTweet(Integer id) {
-		if (id == null || !tweetRepository.existsById(id)) {
+		if (id == null) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		} else if(!tweetRepository.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 
 		tweetRepository.deleteById(id);

@@ -2,8 +2,6 @@ package hr.fer.rznu.lab1.tweeter.tweet;
 
 import java.util.List;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +44,6 @@ public class TweetController {
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/tweets/{tweetId}")
-	@OnDelete(action=OnDeleteAction.CASCADE)
 	public void deleteTweet(@PathVariable Integer tweetId) {
 		tweetService.deleteTweet(tweetId);
 	}

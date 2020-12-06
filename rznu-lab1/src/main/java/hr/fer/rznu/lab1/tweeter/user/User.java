@@ -76,6 +76,10 @@ public class User {
 				dateOfBirth);
 	}
 	
+	public String asJSONString() {
+		return "{\"id\":" + id + ",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName
+				+ "\",\"dateOfBirth\":\"" + dateOfBirth.toString() + "\"}";
+	}
 	
 	
 }
